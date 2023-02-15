@@ -31,7 +31,6 @@
 <body>
     <div id="container">
         <div id="bgc">
-
             <div id="background">
                 <img id="bg-preload" onload="bg_ready()" src="" />
                 <div id="bg-static"></div>
@@ -45,6 +44,9 @@
             </div>
             <div id="kanji-display" dir="r">
                 <div id="anim-card" class="kanji-card" class="lightshade">
+                    <p class="jlpt-level">
+                        ...
+                    </p>
                     <p class="kanji">
                         Loading
                     </p>
@@ -57,6 +59,9 @@
                     </div>
                 </div>
                 <div id="real-card" class="kanji-card" class="lightshade">
+                    <p class="jlpt-level" onclick="toggle_jlpt()" title="click to toggle level">
+                        ...
+                    </p>
                     <p class="kanji">
                         Loading
                     </p>

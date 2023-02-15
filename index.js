@@ -16,6 +16,12 @@
 */
 
 
+/*
+    To be honest, i have no clue how this even works. 
+    The 'threads' are timeouts that can be cancelled and are there to prevent spamming APIs with requests.
+    The animation stuff... yeaah it works i guess?
+*/
+
 const $ = (arg) => document.querySelector(arg);
 
 var translation_wheel_thread = undefined;
@@ -105,6 +111,7 @@ async function fetch_vocab(level, id) {
 
 function set_card(id, vocab) {
     $(`#${id} .kanji`).innerHTML = vocab.kanji;
+    $(`#${id} .jlpt-level`).innerHTML = `◀ JLPT ${vocab_level.name.toUpperCase()}#${vocab.id} ▶`;
     $(`#${id} .reading`).innerHTML = vocab.read;
     $(`#${id} .trans-top`).innerHTML = vocab.en[0];
     $(`#${id} .trans-bot`).innerHTML = vocab.en[0];
@@ -407,3 +414,64 @@ async function noscroll_kanji(new_vocab) {
     load_links(new_vocab, true);
     fetch_sentences(new_vocab, true);
 }
+
+async function toggle_jlpt() {
+    var cr = parseInt(vocab_level.name[1]);
+    cr--;
+    if (("n" + cr) in levels) {
+        vocab_level = levels[("n" + cr)];
+    } else {
+        vocab_level = levels["n5"];
+    }
+
+    await noscroll_kanji(await fetch_vocab(vocab_level, current_vocab_id));
+}
+
+
+
+var swipe_container = window;
+
+swipe_container.addEventListener("touchstart", start_touch, false);
+swipe_container.addEventListener("touchmove", move_touch, false);
+
+// Swipe Up / Down / Left / Right
+var touch_initialX = null;
+var touch_initialY = null;
+
+function start_touch(e) {
+    touch_initialX = e.touches[0].clientX;
+    touch_initialY = e.touches[0].clientY;
+};
+
+function move_touch(e) {
+    if (touch_initialX === null) {
+        return;
+    }
+
+    if (touch_initialY === null) {
+        return;
+    }
+
+    var currentX = e.touches[0].clientX;
+    var currentY = e.touches[0].clientY;
+
+    var diffX = touch_initialX - currentX;
+    var diffY = touch_initialY - currentY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+        if (Math.abs(diffX) < 5) return; //too slow of a swipe
+        if (diffX < 0) {
+            swap_previous();
+        } else {
+            swap_next();
+        }
+    } else {
+        //ignore
+    }
+
+    touch_initialX = null;
+    touch_initialY = null;
+
+    e.preventDefault();
+};
