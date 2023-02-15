@@ -286,10 +286,13 @@ async function fetch_sentences(vocab, instant) {
                 jisho_link.innerHTML = `<img src="./assets/question-circle.svg" />`;
                 jisho_link.href = `https://jisho.org/search/${encodeURIComponent(val.text)}`;
                 jisho_link.target = "_blank";
+                jisho_link.title = "grammar on jisho";
 
                 tato_link.innerHTML = `<img src="./assets/message-2.svg" />`;
                 tato_link.href = `https://tatoeba.org/en/sentences/search?from=jpn&query=${encodeURIComponent(val.text)}&to=eng`;
                 tato_link.target = "_blank";
+                tato_link.title = "original sentence on tatoeba"
+
                 lnk.appendChild(tato_link);
                 lnk.appendChild(jisho_link);
                 return lnk;
