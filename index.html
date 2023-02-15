@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Nihongo</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="bgc">
+
+            <div id="background">
+                <img id="bg-preload" onload="bg_ready()" src="" />
+                <div id="bg-static"></div>
+                <div id="bg-image"> </div>
+            </div>
+            <p id="photo-credit">photo by name</p>
+        </div>
+        <div id="main">
+            <div id="btn-left" class="arrow-button" onclick="swap_previous()">
+                <img src="./assets/chevrons-left.svg" />
+            </div>
+            <div id="kanji-display" dir="r">
+                <div id="anim-card" class="kanji-card" class="lightshade">
+                    <p class="kanji">
+                        Loading
+                    </p>
+                    <p class="reading">
+                        ...
+                    </p>
+                    <div class="translation">
+                        <p class="trans-top scrolling-translation">...</p>
+                        <p class="trans-bot scrolling-translation">...</p>
+                    </div>
+                </div>
+                <div id="real-card" class="kanji-card" class="lightshade">
+                    <p class="kanji">
+                        Loading
+                    </p>
+                    <p class="reading">
+                        ...
+                    </p>
+                    <div class="translation">
+                        <p class="trans-top scrolling-translation">...</p>
+                        <p class="trans-bot scrolling-translation">...</p>
+                    </div>
+                </div>
+            </div>
+            <div id="btn-right" class="arrow-button" onclick="swap_next()">
+                <img src="./assets/chevrons-right.svg" />
+            </div>
+        </div>
+        <div id="further" class="lightshade">
+            <div class="page-content">
+                <div id="links">
+                    <h2>links</h2>
+                    <div class="linkbox">
+                        <a target="_blank" class="reflink" id="takoboto-link">takoboto page</a>
+                        <a target="_blank" class="reflink" id="jisho-link">jisho page</a>
+                        <a target="_blank" class="reflink" id="tatoeba-link">tatoeba sentences</a>
+                        <a class="reflink" id="perma-link">perma-link this</a>
+                    </div>
+                </div>
+                <div id="writing">
+                    <h2>writing</h2>
+                    <div id="writing-container">
+                        <div class="writing-svgs"></div>
+                    </div>
+                </div>
+                <div id="sentences">
+                    <h2>sentences</h2>
+                    <div class="sentence-results"></div>
+                </div>
+                <div id="bottom">
+                    <div class="linkbox">
+                        <a class="reflink" onclick="window.scroll(0,0)">go up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="page-content">
+                <div id="about">
+                    <h2>about</h2>
+                    <p>webpage designed & created by bajtixone<br>
+                        uses KanjiVG for character writings, Tatoeba for sentence search and Pexels for background
+                        photos<br>
+                        source code contains materials from KanjiDatabase which are not used for now<br>
+                        word lists were compiled from various web resources
+                        <br>
+                        licensed under GPLv3 (note that the referenced projects' licenses apply)
+                    </p>
+                    <div class="linkbox">
+                        <a class="reflink" href="https://github.com/Bajtix/">code</a>
+                        <a class="reflink" href="https://bajtix.xyz">bajtix.xyz</a>
+                        <a class="reflink" href="https://ohai.social/@bajtix">mastodon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
