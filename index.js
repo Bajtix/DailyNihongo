@@ -43,12 +43,12 @@ const svg_delay = 500;
 const levels = {
     'n5': {
         name: 'n5',
-        endpoint: "./vocab/n5/",
+        endpoint: "vocab/n5/",
         count: 669
     },
     'n4': {
         name: 'n4',
-        endpoint: "./vocab/n4/",
+        endpoint: "vocab/n4/",
         count: 635
     }
 };
@@ -161,7 +161,7 @@ async function load_svgs(vocab, instant) {
         vocab.svg.forEach(async (element, i) => {
             const svgname = element.split('.')[0];
             var obj = document.createElement('object');
-            obj.data = `./charsvg/${element}`;
+            obj.data = `charsvg/${element}`;
 
             obj.addEventListener("load", () => {
                 const svg = obj.contentDocument.querySelector("svg");
@@ -225,7 +225,7 @@ async function fetch_sentences(vocab, instant) {
     clearTimeout(sentence_load_thread);
     $('#sentences').removeAttribute("scr");
     sentence_load_thread = setTimeout(async () => {
-        var api_link = `./debug-sentence-fetch.php?vocab=${encodeURIComponent(vocab.kanji)}`;
+        var api_link = `debug-sentence-fetch.php?vocab=${encodeURIComponent(vocab.kanji)}`;
         console.log("Fetching sentences from " + api_link);
         var data = await (await fetch(api_link)).json();
         var parent = document.createElement("div");
@@ -283,12 +283,12 @@ async function fetch_sentences(vocab, instant) {
                 var tato_link = document.createElement("a");
                 tato_link.className = "in";
                 lnk.className = "ln " + id;
-                jisho_link.innerHTML = `<img src="./assets/question-circle.svg" />`;
+                jisho_link.innerHTML = `<img src="assets/question-circle.svg" />`;
                 jisho_link.href = `https://jisho.org/search/${encodeURIComponent(val.text)}`;
                 jisho_link.target = "_blank";
                 jisho_link.title = "grammar on jisho";
 
-                tato_link.innerHTML = `<img src="./assets/message-2.svg" />`;
+                tato_link.innerHTML = `<img src="assets/message-2.svg" />`;
                 tato_link.href = `https://tatoeba.org/en/sentences/search?from=jpn&query=${encodeURIComponent(val.text)}&to=eng`;
                 tato_link.target = "_blank";
                 tato_link.title = "original sentence on tatoeba"
