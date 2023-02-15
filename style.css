@@ -17,8 +17,8 @@ a {
 
 h2 {
     letter-spacing: 0.05em;
-    font-size: 1.6em;
-    margin-bottom: 0.2em;
+    font-size: 1.7em;
+    margin-bottom: 0.1em;
 }
 
 #container {
@@ -301,17 +301,21 @@ h2 {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .reflink {
     padding: 1em;
-    letter-spacing: 1;
-    transition: letter-spacing 0.05s;
+    transform: scale(1);
+    transition: transform 0.05s;
 }
 
 .reflink:hover {
-    letter-spacing: 0.1em;
+    transform: scale(1.1);
+}
+
+.reflink>img {
+    width: 2.2em;
 }
 
 #writing {
@@ -357,16 +361,10 @@ h2 {
 
 .sentence {
     display: inline-block;
-    width: 80%;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
-
-/* .sentence:nth-child(odd)>.jp::before {
-    content: url("./assets/message-2.svg");
-}
-
-.sentence:nth-child(even)>.jp::after {
-    content: url("./assets/message-2.svg");
-} */
 
 .sentence:nth-child(odd) {
     float: left;
@@ -376,6 +374,22 @@ h2 {
 .sentence:nth-child(even) {
     float: right;
     text-align: right;
+}
+
+.sentence:nth-child(even)>.lnbef {
+    display: inline-block;
+}
+
+.sentence:nth-child(even)>.lnaft {
+    display: none;
+}
+
+.sentence:nth-child(odd)>.lnbef {
+    display: none;
+}
+
+.sentence:nth-child(odd)>.lnaft {
+    display: inline-block;
 }
 
 .sentence>.jp {
@@ -391,18 +405,20 @@ h2 {
 }
 
 .sentence>.ln {
-    margin-top: 1em;
+    display: inline-block;
+    margin-top: 0em;
     margin-bottom: 0em;
 }
 
 .sentence>.ln>.in {
-    width: 3em;
+    width: 2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     display: inline-block;
-    opacity: 0.2;
+    opacity: 0.25;
     font-size: 0.7em;
     transition: opacity 0.05s;
 }
-
 
 .sentence>.ln>.in:hover {
     opacity: 0.5;
@@ -451,7 +467,15 @@ h2 {
     backdrop-filter: blur(20px) brightness(0.9);
 }
 
-@media screen and (max-width: 600px) {
+#about>p {
+    margin-top: 0em;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+@media screen and (max-width: 700px) {
     #main {
         flex-wrap: wrap;
     }
@@ -480,6 +504,19 @@ h2 {
         flex: 1 1;
         height: 15em;
         width: 100%;
+    }
+
+    .sentence>.lnbef {
+        display: block !important;
+    }
+
+    .sentence>.lnaft {
+        display: none !important;
+    }
+
+    .linkbox>.reflink {
+        text-align: center;
+        flex: 1 1 90%;
     }
 
     @media screen and (max-height: 600px) {

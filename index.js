@@ -205,7 +205,7 @@ async function fetch_sentences(vocab, instant) {
         await sleep(200);
         $("#sentences .sentence-results")?.remove();
 
-        data.results.forEach((val) => {
+        data.results.forEach((val, index) => {
             var sentence = val.text;
             var translation = "";
             for (i = 0; i < val.translations.length; i++) {
@@ -244,28 +244,33 @@ async function fetch_sentences(vocab, instant) {
             jp.className = "jp";
             var en = document.createElement("p");
             en.className = "en";
-            var lnk = document.createElement("div");
-            lnk.className = "ln";
-            var jisho_link = document.createElement("a");
-            jisho_link.className = "in";
-            var tato_link = document.createElement("a");
-            tato_link.className = "in";
 
             jp.innerHTML = sentence;
             en.innerHTML = translation;
-            jisho_link.innerHTML = `<img src="./assets/question-circle.svg" />`;
-            jisho_link.href = `https://jisho.org/search/${encodeURIComponent(val.text)}`;
-            jisho_link.target = "_blank";
 
-            tato_link.innerHTML = `<img src="./assets/message-2.svg" />`;
-            tato_link.href = `https://tatoeba.org/en/sentences/search?from=jpn&query=${encodeURIComponent(val.text)}&to=eng`;
-            tato_link.target = "_blank";
+            const makelnk = (id) => {
+                var lnk = document.createElement("div");
+                var jisho_link = document.createElement("a");
+                jisho_link.className = "in";
+                var tato_link = document.createElement("a");
+                tato_link.className = "in";
+                lnk.className = "ln " + id;
+                jisho_link.innerHTML = `<img src="./assets/question-circle.svg" />`;
+                jisho_link.href = `https://jisho.org/search/${encodeURIComponent(val.text)}`;
+                jisho_link.target = "_blank";
 
-            mn.appendChild(lnk); // and this kids why you should just use a framework
+                tato_link.innerHTML = `<img src="./assets/message-2.svg" />`;
+                tato_link.href = `https://tatoeba.org/en/sentences/search?from=jpn&query=${encodeURIComponent(val.text)}&to=eng`;
+                tato_link.target = "_blank";
+                lnk.appendChild(tato_link);
+                lnk.appendChild(jisho_link);
+                return lnk;
+            }
+
+            mn.appendChild(makelnk("lnbef")); // and this kids why you should just use a framework
             mn.appendChild(jp);
+            mn.appendChild(makelnk("lnaft"));
             mn.appendChild(en);
-            lnk.appendChild(tato_link);
-            lnk.appendChild(jisho_link);
 
 
             parent.appendChild(mn);
