@@ -10,7 +10,7 @@ import time
 import shutil
 import re
 
-level = "n4"
+level = "n3"
 
 pexels_token = ""
 
@@ -30,7 +30,7 @@ with open("token","r") as fp:
     pexels_token = fp.read().strip()
 
 counter = 0
-with open(f"vocab_{level}.json","r") as fp:
+with open(f"in/vocab/vocab_{level}.json","r") as fp:
     data = json.load(fp)
     for entry in data:
         reading = entry["Hiragana"].strip()
@@ -81,6 +81,6 @@ with open(f"vocab_{level}.json","r") as fp:
 
         print(result)
 
-        time.sleep(5)
+        time.sleep(1)
         counter = counter + 1
 

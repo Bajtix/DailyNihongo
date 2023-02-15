@@ -56,15 +56,18 @@ const levels = {
 var vocab_level = levels.n5; // this will be deduced from the url
 var current_vocab_id = Math.round((new Date().getTime()) / (1000 * 3600 * 24)) % vocab_level.count;
 
+
+window.onload = load_current_stuff;
+window.onhashchange = load_current_stuff;
+
+// crypto is not available on all devices in 2023... so we need our own generator for uuids
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
-} // crypto is not available on all devices in 2023...
+}
 
-window.onload = load_current_stuff;
-window.onhashchange = load_current_stuff;
 
 function sleep(ms) { // helper function
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -379,8 +382,9 @@ async function animate_kanji_drawing(obj, time = 5) {
 
     console.log("Animating " + uuid);
     const framerate = 30;
-
+    if (obj.contentDocument === null) return;
     const svg = obj.contentDocument.querySelector("svg");
+
     for (i = 0; i < time * framerate; i++) {
         const v = i; // js trickery 
         const de = i * 1000 / framerate;
@@ -423,6 +427,8 @@ async function toggle_jlpt() {
     } else {
         vocab_level = levels["n5"];
     }
+
+    current_vocab_id = current_vocab_id % vocab_level.count;
 
     await noscroll_kanji(await fetch_vocab(vocab_level, current_vocab_id));
 }
