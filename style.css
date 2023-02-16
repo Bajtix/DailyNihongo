@@ -234,7 +234,7 @@ h2 {
 }
 
 .kanji {
-    font-size: 6em;
+    font-size: calc(7em * (4 / max(var(--strlen), 4)));
     line-height: 1;
     margin: 0rem;
     word-break: keep-all;
