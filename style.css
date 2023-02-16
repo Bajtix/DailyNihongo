@@ -444,7 +444,7 @@ h2 {
 
 .kana-kanji {
     text-align: center;
-    width: 6rem;
+    width: calc(var(--strlen) * 1em + 0.2em);
     display: inline-block;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     border-radius: 10px;

@@ -114,6 +114,7 @@ async function fetch_vocab(level, id) {
 
 function set_card(id, vocab) {
     $(`#${id} .kanji`).innerHTML = vocab.kanji;
+    $(`#${id} .kanji`).style.setProperty("--strlen", vocab.kanji.length);
     $(`#${id} .jlpt-level`).innerHTML = `◀ JLPT ${vocab_level.name.toUpperCase()}#${vocab.id} ▶`;
     $(`#${id} .reading`).innerHTML = vocab.read;
     $(`#${id} .trans-top`).innerHTML = vocab.en[0];
@@ -259,7 +260,7 @@ async function fetch_sentences(vocab, instant) {
                             transcription = transcription.replace(match, kana);
                         }
                     } else {
-                        transcription = transcription.replace(match, `<span class="kana-kanji" kana="${kana}" kanji="${kanji}"></span>`);
+                        transcription = transcription.replace(match, `<span class="kana-kanji" style="--strlen: ${Math.max(kana.length, kanji.length)};" kana="${kana}" kanji="${kanji}"></span>`);
                     }
                 });
 
