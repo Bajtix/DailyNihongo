@@ -23,7 +23,7 @@ Sentences make understanding a certain word easier. Thanks to the Tatoeba API, a
 </p>
 
 # Contributing
-Do your best! I doubt that anyone is going to contribute to this project, but feel free to do so. The JS code is a total mess and it all barely works
+Good luck! I doubt that anyone is going to contribute to this project, but feel free to do so. The JS code is a total mess and it all barely works
 
 # TODOs
 - [ ] dark theme
