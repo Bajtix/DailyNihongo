@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DailyNihongo Printout</title>
-    <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
 
     <style>
+        html {
+            overflow-y: scroll;
+        }
+
         body {
             width: 210mm;
             height: 297mm;
@@ -21,6 +24,14 @@
             display: grid;
             grid-template-rows: 32mm min-content min-content auto;
             gap: 1mm;
+
+            font-family: serif;
+        }
+
+        h2 {
+            letter-spacing: 0.05em;
+            font-size: 1.7em;
+            margin-bottom: 0.1em;
         }
 
         body>div {
@@ -124,13 +135,15 @@
         p.po-sentence {
             width: 100%;
             text-align: center;
-            font-size: 5mm;
+            font-size: 4.5mm;
             margin: 0px;
             display: flex;
             align-items: center;
             justify-content: center;
 
             grid-column: 1;
+
+            max-width: 60mm;
         }
 
         span.po-sentence {
@@ -165,7 +178,7 @@ try {
     $en = join(",", $data["en"]);
     $svgs = $data["svg"];
 
-    $url = "https://tatoeba.org/en/api_v0/search?from=jpn&query=" . $kanji . "&trans_filter=limit&trans_to=eng&to=eng";
+    $url = "https://tatoeba.org/en/api_v0/search?from=jpn&query=" . $kanji . "&trans_filter=limit&trans_to=eng&to=eng&sort=words";
     $sentence_data = json_decode(file_get_contents($url), true);
     $sentences = $sentence_data["results"];
 } catch (Error $e) {
