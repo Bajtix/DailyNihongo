@@ -226,7 +226,7 @@ async function fetch_sentences(vocab, instant) {
     clearTimeout(sentence_load_thread);
     $('#sentences').removeAttribute("scr");
     sentence_load_thread = setTimeout(async () => {
-        var api_link = `debug-sentence-fetch.php?vocab=${encodeURIComponent(vocab.kanji)}`;
+        var api_link = `sentence-fetch.php?vocab=${encodeURIComponent(vocab.kanji)}`;
         console.log("Fetching sentences from " + api_link);
         var data = await (await fetch(api_link)).json();
         var parent = document.createElement("div");
@@ -323,6 +323,11 @@ async function load_links(vocab, instant) {
         $('#jisho-link').href = `https://jisho.org/search/${coded}`;
         $('#tatoeba-link').href = `https://tatoeba.org/en/sentences/search?from=jpn&query=${coded}&to=eng`;
         $('#perma-link').href = `${window.location.href.replace(window.location.hash, "")}#jlpt=${vocab_level.name}#id=${current_vocab_id}`;
+        $('#print-link').onclick = () => {
+            var w = window.open(`printout.php?id=${vocab.id}&jlpt=${vocab_level.name}`);
+            w.onload = () => w.print();
+            //w.print();
+        };
         $('#links').setAttribute("scr", "");
     }, instant ? 0 : svg_delay);
 }

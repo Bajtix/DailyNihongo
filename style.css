@@ -555,4 +555,9 @@ h2 {
         height: 80%;
         opacity: 1;
     }
+
+    #print-link {
+        display: none;
+        /* unlikely to print from phone */
+    }
 }
