@@ -565,7 +565,7 @@ h2 {
 @media (prefers-color-scheme: dark) {
     #further {
         color: white;
-        background-color: #111;
+        background-color: #181818;
     }
 
     .sentence>.ln>.in {

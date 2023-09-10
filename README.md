@@ -1,7 +1,7 @@
 <img align="right" width="100" height="100" src="assets/favicon.svg"><br>
 
 # DailyNihongo
-DailyNihongo is a website for Japanese language learners that provides a new word every day. The word lists were compiled from various resources and are split by the JLPT level. While this way of division might not be the best, it still separetes the most common words from the rarely-used ones. Currently *N5* and *N4* levels are supported.
+DailyNihongo is a website for Japanese language learners that provides a new word for every day. The word lists were compiled from various resources and are split by the JLPT level. While this way of division might not be the best, it still separetes the most common words from the rarely-used ones. Currently *N5*, *N4* and *N3* levels are supported.
 
 <p align=center>
     <img src="github/amai-desktop.png"><br>
@@ -26,9 +26,10 @@ Sentences make understanding a certain word easier. Thanks to the Tatoeba API, a
 Good luck! I doubt that anyone is going to contribute to this project, but feel free to do so. The JS code is a total mess and it all barely works
 
 # TODOs
-- [ ] dark theme
+- [+] dark theme
 - [ ] direct usage of Tatoeba API (they need to change a header on their server...)
 - [ ] optimization 
+- [ ] fix scroll animation
 
 # Sources
 + webpage designed & created by [@bajtix](https://github.com/Bajtix)
@@ -37,4 +38,4 @@ Good luck! I doubt that anyone is going to contribute to this project, but feel 
 + word lists were compiled from various web resources
 
 # License
-Licensed under GPLv3 (note that the referenced projects' licenses apply)
+Licensed under GPLv3 (note that the referenced projects' licenses apply, check CREDIT files in directories)
