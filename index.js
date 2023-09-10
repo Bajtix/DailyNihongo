@@ -37,7 +37,7 @@ var lock_switching = false;
 var lock_broken = false;
 
 const translation_time = 2000;
-const background_delay = 1000;
+const background_delay = 1200;
 const svg_delay = 500;
 
 const levels = {
@@ -62,8 +62,8 @@ var vocab_level = levels.n5; // this will be deduced from the url
 var current_vocab_id = Math.round((new Date().getTime()) / (1000 * 3600 * 24)) % vocab_level.count;
 
 
-window.onload = load_current_stuff;
-window.onhashchange = load_current_stuff;
+window.onload = load_url_params;
+window.onhashchange = load_url_params;
 
 // crypto is not available on all devices in 2023... so we need our own generator for uuids
 function uuidv4() {
@@ -78,7 +78,7 @@ function sleep(ms) { // helper function
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function load_current_stuff() {
+async function load_url_params() {
     var params = {
         'jlpt': 'n5',
         'id': Math.round((new Date().getTime()) / (1000 * 3600 * 24))
@@ -121,7 +121,10 @@ function set_card(id, vocab) {
     $(`#${id} .kanji`).innerHTML = vocab.kanji;
     $(`#${id} .kanji`).style.setProperty("--strlen", vocab.kanji.length);
     $(`#${id} .jlpt-level`).innerHTML = `◀ JLPT ${vocab_level.name.toUpperCase()}#${vocab.id} ▶`;
-    $(`#${id} .reading`).innerHTML = vocab.read;
+    // selected_reading = wanakana.isKatakana(vocab.kanji) ? vocab.kanji : wanakana.toHiragana(vocab.read, { useObsoleteKana: true });
+    selected_reading = wanakana.toHiragana(vocab.read, { useObsoleteKana: true });
+    $(`#${id} .reading`).setAttribute("kana", selected_reading);
+    $(`#${id} .reading`).setAttribute("romaji", wanakana.toRomaji(vocab.read));
     $(`#${id} .trans-top`).innerHTML = vocab.en[0];
     $(`#${id} .trans-bot`).innerHTML = vocab.en[0];
 

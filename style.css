@@ -243,6 +243,17 @@ h2 {
 .reading {
     margin: 0px;
     font-size: 2em;
+    height: 1.8em;
+}
+
+.reading::after {
+    content: attr(kana);
+}
+
+.reading:hover::after {
+    font-family: monospace;
+    font-size: .8em;
+    content: attr(romaji);
 }
 
 .translation {
