@@ -561,3 +561,22 @@ h2 {
         /* unlikely to print from phone */
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    #further {
+        color: white;
+        background-color: #111;
+    }
+
+    .sentence>.ln>.in {
+        filter: invert(1);
+    }
+
+    #writing-container {
+        filter: invert(1) brightness(0.9);
+    }
+
+    #bgc {
+        filter: brightness(0.75);
+    }
+}
