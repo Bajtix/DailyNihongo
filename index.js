@@ -50,6 +50,11 @@ const levels = {
         name: 'n4',
         endpoint: "vocab/n4/",
         count: 635
+    },
+    'n3': {
+        name: 'n3',
+        endpoint: "vocab/n3/",
+        count: 3701
     }
 };
 
