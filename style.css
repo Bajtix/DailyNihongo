@@ -34,7 +34,7 @@ a {
 }
 
 h2 {
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     font-size: 1.7em;
     margin-bottom: 0.1em;
 }
@@ -589,5 +589,13 @@ h2 {
 
     #bgc {
         filter: brightness(0.75);
+    }
+
+    .reflink>img {
+        filter: invert(1);
+    }
+
+    .kana-kanji {
+        box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
     }
 }

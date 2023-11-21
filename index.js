@@ -120,7 +120,7 @@ async function fetch_vocab(level, id) {
 function set_card(id, vocab) {
     $(`#${id} .kanji`).innerHTML = vocab.kanji;
     $(`#${id} .kanji`).style.setProperty("--strlen", vocab.kanji.length);
-    $(`#${id} .jlpt-level`).innerHTML = `◀ JLPT ${vocab_level.name.toUpperCase()}#${vocab.id} ▶`;
+    $(`#${id} .jlpt-level`).innerHTML = `JLPT ${vocab_level.name.toUpperCase()}#${vocab.id}`;
     // selected_reading = wanakana.isKatakana(vocab.kanji) ? vocab.kanji : wanakana.toHiragana(vocab.read, { useObsoleteKana: true });
     selected_reading = wanakana.toHiragana(vocab.read, { useObsoleteKana: true });
     $(`#${id} .reading`).setAttribute("kana", selected_reading);
